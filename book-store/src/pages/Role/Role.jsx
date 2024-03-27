@@ -11,7 +11,7 @@ function Role() {
     useEffect(() => {
         const fetchRoles = async () => {
             try {
-                const response = await axios.get('https://localhost:44372/api/Role');
+                const response = await axios.get('http://localhost:5000/api/Role');
                 setRoles(response.data);
             } catch (error) {
                 console.error('Error fetching role data:', error);
@@ -28,7 +28,7 @@ function Role() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('https://localhost:44372/api/Role', {
+            const response = await axios.post('http://localhost:5000/api/Role', {
                 name: name
             });
 
@@ -46,7 +46,7 @@ function Role() {
 
     const handleEditButtonClick = async (id) => {
         try {
-            const response = await axios.get(`https://localhost:44372/api/Role/id=${id}`);
+            const response = await axios.get(`http://localhost:5000/api/Role/id=${id}`);
 
             if (response.data) {
                 setSelectedRole(response.data);
@@ -64,7 +64,7 @@ function Role() {
 
     const handleSaveChanges = async () => {
         try {
-            await axios.put(`https://localhost:44372/api/Role/id=${selectedRole.Id}`, selectedRole);
+            await axios.put(`http://localhost:5000/api/Role/id=${selectedRole.Id}`, selectedRole);
             window.location.reload();
         } catch (error) {
             console.error('Error while saving changes:', error);
@@ -74,7 +74,7 @@ function Role() {
     const handleDeleteCategory = async (id) => {
         try {
             // Gọi API để xóa category có id tương ứng
-            await axios.delete(`https://localhost:44372/api/Role/id=${id}`);
+            await axios.delete(`http://localhost:5000/api/Role/id=${id}`);
 
             // Tải lại trang sau khi xóa thành công
             window.location.reload();

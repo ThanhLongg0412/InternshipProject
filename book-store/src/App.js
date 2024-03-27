@@ -6,6 +6,7 @@ import Category from "./pages/Category/Category";
 import Customer from "./pages/Customer/Customer";
 import Employee from "./pages/Employee/Employee";
 import Order from "./pages/Order/Order";
+import OrderDetail from './pages/Order/OrderDetail.jsx';
 import Payment from "./pages/Payment/Payment";
 import Book from "./pages/Book/Book";
 import AddBook from "./pages/Book/AddBook";
@@ -59,6 +60,7 @@ function App() {
         <Route path="/employee" element={loggedIn ? <Employee /> : <Navigate to="/login" />} />
         <Route path="/customer" element={loggedIn ? <UserElement><Customer /></UserElement> : <Navigate to="/login" />} />
         <Route path="/order" element={loggedIn ? <UserElement><Order /></UserElement> : <Navigate to="/login" />} />
+        <Route path="/OrderDetail/:id" element={loggedIn ? <OrderDetail /> : <Navigate to="/login" />} />
         <Route path="/payment" element={loggedIn ? <UserElement><Payment /> </UserElement> : <Navigate to="/login" />} />
         <Route path="/book" element={loggedIn ? <UserElement><Book /></UserElement> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />

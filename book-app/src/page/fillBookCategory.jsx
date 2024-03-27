@@ -15,7 +15,7 @@ function BookCat() {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get(`https://localhost:44372/api/Book/GetBookByCatId/id=${id}`);
+                const response = await axios.get(`http://localhost:5000/api/Book/GetBookByCatId/id=${id}`);
                 setBooks(response.data);
             } catch (error) {
                 console.error('Error fetching books:', error);

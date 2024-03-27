@@ -11,7 +11,7 @@ function Permisstion() {
     useEffect(() => {
         const fetchPermisstions = async () => {
             try {
-                const response = await axios.get('https://localhost:44372/api/Permission');
+                const response = await axios.get('http://localhost:5000/api/Permission');
                 setPermisstions(response.data);
             } catch (error) {
                 console.error('Error fetching role data:', error);
@@ -28,7 +28,7 @@ function Permisstion() {
         event.preventDefault();
 
         try {
-            const response = await axios.post('https://localhost:44372/api/Permission', {
+            const response = await axios.post('http://localhost:5000/api/Permission', {
                 name: name
             });
 
@@ -46,7 +46,7 @@ function Permisstion() {
 
     const handleEditButtonClick = async (id) => {
         try {
-            const response = await axios.get(`https://localhost:44372/api/Permission/id=${id}`);
+            const response = await axios.get(`http://localhost:5000/api/Permission/id=${id}`);
 
             if (response.data) {
                 setSelectedPermisstion(response.data);
@@ -64,7 +64,7 @@ function Permisstion() {
 
     const handleSaveChanges = async () => {
         try {
-            await axios.put(`https://localhost:44372/api/Permission/id=${selectedPermisstion.Id}`, selectedPermisstion);
+            await axios.put(`http://localhost:5000/api/Permission/id=${selectedPermisstion.Id}`, selectedPermisstion);
             window.location.reload();
         } catch (error) {
             console.error('Error while saving changes:', error);
@@ -74,7 +74,7 @@ function Permisstion() {
     const handleDeleteCategory = async (id) => {
         try {
             // Gọi API để xóa category có id tương ứng
-            await axios.delete(`https://localhost:44372/api/Permission/id=${id}`);
+            await axios.delete(`http://localhost:5000/api/Permission/id=${id}`);
 
             // Tải lại trang sau khi xóa thành công
             window.location.reload();

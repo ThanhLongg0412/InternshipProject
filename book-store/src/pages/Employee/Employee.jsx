@@ -12,7 +12,7 @@ function Employee() {
     useEffect(() => {
         const fetchCustomers = async () => {
             try {
-                const response = await axios.get('https://localhost:44372/api/Admin');
+                const response = await axios.get('http://localhost:5000/api/Admin');
                 setAdmins(response.data);
             } catch (error) {
                 console.error('Error fetching customer data:', error);
@@ -34,7 +34,7 @@ function Employee() {
 
     useEffect(() => {
         // Gọi API để lấy dữ liệu role khi component được render
-        fetch('https://localhost:44372/api/Role')
+        fetch('http://localhost:5000/api/Role')
             .then(response => response.json())
             .then(data => setRoleOptions(data))
             .catch(error => console.error('Error fetching roles:', error));
@@ -45,7 +45,7 @@ function Employee() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('https://localhost:44372/api/Admin', {
+            const response = await axios.post('http://localhost:5000/api/Admin', {
                 username,
                 password,
                 email,
@@ -79,7 +79,7 @@ function Employee() {
 
     const handleEditButtonClick = async (id) => {
         try {
-            const response = await axios.get(`https://localhost:44372/api/Admin/id=${id}`);
+            const response = await axios.get(`http://localhost:5000/api/Admin/id=${id}`);
 
             if (response.data) {
                 setSelectedAdmin(response.data);
@@ -101,7 +101,7 @@ function Employee() {
 
     const handleSaveChanges = async () => {
         try {
-            await axios.put(`https://localhost:44372/api/Admin/id=${selectedAdmin.Id}`, selectedAdmin);
+            await axios.put(`http://localhost:5000/api/Admin/id=${selectedAdmin.Id}`, selectedAdmin);
             // window.location.reload();
             // Navigate('/customer');
         } catch (error) {
@@ -116,7 +116,7 @@ function Employee() {
     const handleDeleteCategory = async (id) => {
         try {
             // Gọi API để xóa category có id tương ứng
-            await axios.delete(`https://localhost:44372/api/Admin/id=${id}`);
+            await axios.delete(`http://localhost:5000/api/Admin/id=${id}`);
 
             // Tải lại trang sau khi xóa thành công
             window.location.reload();
@@ -365,7 +365,7 @@ function Employee() {
                                             Quyền
                                         </label>
 
-                                        < select className="form-select" value={selectedAdmin?.RoleName} onChange={handleEditRoleChange} required>
+                                        <select className="form-select" value={selectedAdmin?.RoleName} onChange={handleEditRoleChange} required>
                                             <option value={0}>-- Chọn vai trò --</option>
                                             {roleOptions.map(option => (
                                                 <option key={option.Id} value={option.Name}>{option.Name}</option>

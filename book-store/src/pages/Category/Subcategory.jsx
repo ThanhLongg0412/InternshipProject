@@ -18,7 +18,7 @@ function SubCategory() {
     useEffect(() => {
         const fetchCategoryDetails = async () => {
             try {
-                const response = await axios.get(`https://localhost:44372/api/Category/subcategories/id=${id}`);
+                const response = await axios.get(`http://localhost:5000/api/Category/id=${id}`);
                 setCategory(response.data);
 
                 // console.log(response.data);
@@ -38,7 +38,7 @@ function SubCategory() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('https://localhost:44372/api/Category', {
+            const response = await axios.post('http://localhost:5000/api/Category', {
                 name: name,
                 parentId: parentId
             });
@@ -67,7 +67,7 @@ function SubCategory() {
     const handleEditButtonClick = async (id) => {
         try {
             // Gọi API để lấy dữ liệu category có id tương ứng
-            const response = await axios.get(`https://localhost:44372/api/Category/id=${id}`);
+            const response = await axios.get(`http://localhost:5000/api/Category/id=${id}`);
             // console.log(response);
 
             if (response.data) {
@@ -89,7 +89,7 @@ function SubCategory() {
     const handleSaveChanges = async () => {
         // Gọi API để lưu thay đổi cho category có id là selectedCategoryId
         try {
-            await axios.put(`https://localhost:44372/api/Category/id=${selectedCategoryId}`, selectedCategory);
+            await axios.put(`http://localhost:5000/api/Category/id=${selectedCategoryId}`, selectedCategory);
             console.log(selectedCategoryId);
             // Đóng modal khi lưu thành công
             // document.getElementById('editcategory').modal('hide');
@@ -104,7 +104,7 @@ function SubCategory() {
     const handleDeleteCategory = async (id) => {
         try {
             // Gọi API để xóa category có id tương ứng
-            await axios.delete(`https://localhost:44372/api/Category/id=${id}`);
+            await axios.delete(`http://localhost:5000/api/Category/id=${id}`);
 
             // Tải lại trang sau khi xóa thành công
             window.location.reload();

@@ -9,7 +9,7 @@ function Payment() {
     const [payments, setPayments] = useState([]);
 
     useEffect(() => {
-        fetch('https://localhost:44372/api/Payment')
+        fetch('http://localhost:5000/api/Payment')
             .then(response => response.json())
             .then(data => setPayments(data))
             .catch(error => console.error('Error fetching payments:', error));
@@ -22,7 +22,7 @@ function Payment() {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post('https://localhost:44372/api/Payment', {
+            const response = await axios.post('http://localhost:5000/api/Payment', {
                 name: name
             });
 
@@ -41,7 +41,7 @@ function Payment() {
 
     const handleEditButtonClick = async (id) => {
         try {
-            const response = await axios.get(`https://localhost:44372/api/Payment/id=${id}`);
+            const response = await axios.get(`http://localhost:5000/api/Payment/id=${id}`);
 
             if (response.data) {
                 setSelectedPayment(response.data);
@@ -59,7 +59,7 @@ function Payment() {
 
     const handleSaveChanges = async () => {
         try {
-            await axios.put(`https://localhost:44372/api/Payment/id=${selectedPayment.Id}`, selectedPayment);
+            await axios.put(`http://localhost:5000/api/Payment/id=${selectedPayment.Id}`, selectedPayment);
             window.location.reload();
         } catch (error) {
             console.error('Error while saving changes:', error);
@@ -71,7 +71,7 @@ function Payment() {
     const handleDeleteCategory = async (id) => {
         try {
             // Gọi API để xóa category có id tương ứng
-            await axios.delete(`https://localhost:44372/api/Payment/id=${id}`);
+            await axios.delete(`http://localhost:5000/api/Payment/id=${id}`);
 
             // Tải lại trang sau khi xóa thành công
             window.location.reload();

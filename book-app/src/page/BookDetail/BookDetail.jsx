@@ -19,7 +19,7 @@ function BookDetail() {
     useEffect(() => {
         const fetchBookDetails = async () => {
             try {
-                const response = await axios.get(`https://localhost:44372/api/Book/id=${id}`);
+                const response = await axios.get(`http://localhost:5000/api/Book/id=${id}`);
                 setBook(response.data);
 
                 // console.log(response.data);

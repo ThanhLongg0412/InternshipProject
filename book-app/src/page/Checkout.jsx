@@ -49,7 +49,7 @@ function Checkout() {
     }, []);
 
     const fetchPaymentOptions = () => {
-        axios.get('https://localhost:44372/api/Payment')
+        axios.get('http://localhost:5000/api/Payment')
             .then(response => {
                 setPaymentOptions(response.data);
             })

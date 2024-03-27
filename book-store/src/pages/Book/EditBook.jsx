@@ -28,7 +28,7 @@ function EditBook() {
 
     useEffect(() => {
         // Gọi API để lấy dữ liệu category khi component được render
-        fetch('https://localhost:44372/api/Category/byParntId')
+        fetch('http://localhost:5000/api/Category')
             .then(response => response.json())
             .then(data => setCategoryOptions(data))
             .catch(error => console.error('Error fetching categories:', error));
@@ -48,7 +48,7 @@ function EditBook() {
     useEffect(() => {
         const fetchBookDetails = async () => {
             try {
-                const response = await fetch(`https://localhost:44372/api/Book/id=${id}`);
+                const response = await fetch(`http://localhost:5000/api/Book/id=${id}`);
                 if (response.ok) {
                     const data = await response.json();
                     console.log(data);
@@ -85,7 +85,7 @@ function EditBook() {
     const handleFormSubmit = async () => {
         // e.preventDefault();
         try {
-            await axios.put(`https://localhost:44372/api/Book/id=${id}`, book);
+            await axios.put(`http://localhost:5000/api/Book/id=${id}`, book);
 
             // Redirect to book details page or do something else
         } catch (error) {
@@ -177,6 +177,16 @@ function EditBook() {
     //     }
     // }, [book.ImageUrl]);
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setBook({ ...book, imageUrl: reader.result });
+        };
+        reader.readAsDataURL(file);
+        }
+    };
     return (
         <div className="sb-nav-fixed" onLoad={startTime}>
             <Header />

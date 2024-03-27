@@ -14,7 +14,7 @@ function Home() {
 
     const fetchBooks = async () => {
         try {
-            const response = await fetch('https://localhost:44372/api/Book/Top6');
+            const response = await fetch('http://localhost:5000/api/Book');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -32,7 +32,7 @@ function Home() {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('https://localhost:44372/api/Category/Top5');
+                const response = await axios.get('http://localhost:5000/api/Category');
                 setCategories(response.data);
 
                 // Set the selectedCategoryId to the ID of the first category
@@ -51,7 +51,7 @@ function Home() {
         const fetchBooksByCategory = async () => {
             if (selectedCategoryId) {
                 try {
-                    const response = await axios.get(`https://localhost:44372/api/Book/GetBookByCatId/id=${selectedCategoryId}`);
+                    const response = await axios.get(`http://localhost:5000/api/Book/GetBookByCatId/id=${selectedCategoryId}`);
                     setSelectedCategoryBooks(response.data);
                 } catch (error) {
                     console.error('Error fetching books:', error);

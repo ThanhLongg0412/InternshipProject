@@ -21,7 +21,7 @@ function Book() {
 
     useEffect(() => {
         // Gọi API để lấy dữ liệu category khi component được render
-        fetch('https://localhost:44372/api/Category/byParntId')
+        fetch('http://localhost:5000/api/Category')
             .then(response => response.json())
             .then(data => setCategoryOptions(data))
             .catch(error => console.error('Error fetching categories:', error));
@@ -31,7 +31,7 @@ function Book() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('https://localhost:44372/api/Book/AddBook', {
+            const response = await axios.post('http://localhost:5000/api/Book', {
                 isbn,
                 name,
                 price,

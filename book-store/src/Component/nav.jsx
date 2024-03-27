@@ -26,7 +26,7 @@ class Navbar extends React.Component {
                                     </div>
                                     Quản lý nhân viên
                                 </Link>
-                                <Link className="nav-link" to={"/customer"}>
+                                <Link className="nav-link" to={"/Customer"}>
                                     <div className="sb-nav-link-icon">
                                         <i className="fa-solid fa-users"></i>
                                     </div>
@@ -58,13 +58,13 @@ class Navbar extends React.Component {
                                 </Link>
                                 <Link className="nav-link" to={"/Role"}>
                                     <div className="sb-nav-link-icon">
-                                        <i class="fa-brands fa-critical-role"></i>
+                                        <i className="fa-brands fa-critical-role"></i>
                                     </div>
                                     Quản lý vai trò
                                 </Link>
                                 <Link className="nav-link" to={"/permisstion"}>
                                     <div className="sb-nav-link-icon">
-                                        <i class="fa-brands fas fa-lock"></i>
+                                        <i className="fa-brands fas fa-lock"></i>
                                     </div>
                                     Quản lý quyền
                                 </Link>

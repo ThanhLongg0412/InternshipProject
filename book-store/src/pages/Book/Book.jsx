@@ -10,7 +10,7 @@ function Book() {
 
 
     useEffect(() => {
-        fetch('https://localhost:44372/api/Book')
+        fetch('http://localhost:5000/api/Book')
             .then(response => response.json())
             .then(data => setBooks(data))
             .catch(error => console.error('Error fetching data:', error));
@@ -19,7 +19,7 @@ function Book() {
     const handleDeleteCategory = async (id) => {
         try {
             // Gọi API để xóa category có id tương ứng
-            await axios.delete(`https://localhost:44372/api/Book/id=${id}`);
+            await axios.delete(`http://localhost:5000/api/Book/id=${id}`);
 
             // Tải lại trang sau khi xóa thành công
             window.location.reload();

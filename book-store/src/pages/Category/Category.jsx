@@ -15,7 +15,7 @@ function Category() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://localhost:44372/api/Category');
+                const response = await axios.get('http://localhost:5000/api/Category');
                 setCategories(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -32,7 +32,7 @@ function Category() {
         // e.preventDefault();
 
         try {
-            const response = await axios.post('https://localhost:44372/api/Category', {
+            const response = await axios.post('http://localhost:5000/api/Category', {
                 name: name,
                 parent_id: parentId
             });
@@ -48,12 +48,16 @@ function Category() {
 
 
     const [selectedCategoryId, setSelectedCategoryId] = useState(null);
-    const [selectedCategory, setSelectedCategory] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState({
+        id: '',
+        name: '',
+        parent_id: 0,
+    });
 
     const handleEditButtonClick = async (id) => {
         try {
             // Gọi API để lấy dữ liệu category có id tương ứng
-            const response = await axios.get(`https://localhost:44372/api/Category/id=${id}`);
+            const response = await axios.get(`http://localhost:5000/api/Category/id=${id}`);
             // console.log(response);
 
             if (response.data) {
@@ -75,7 +79,7 @@ function Category() {
     const handleSaveChanges = async () => {
         // Gọi API để lưu thay đổi cho category có id là selectedCategoryId
         try {
-            await axios.put(`https://localhost:44372/api/Category/id=${selectedCategoryId}`, selectedCategory);
+            await axios.put(`http://localhost:5000/api/Category/id=${selectedCategoryId}`, selectedCategory);
             console.log(selectedCategoryId);
             // Đóng modal khi lưu thành công
             // document.getElementById('editcategory').modal('hide');
@@ -90,7 +94,7 @@ function Category() {
     const handleDeleteCategory = async (id) => {
         try {
             // Gọi API để xóa category có id tương ứng
-            await axios.delete(`https://localhost:44372/api/Category/id=${id}`);
+            await axios.delete(`http://localhost:5000/api/Category/id=${id}`);
 
             // Tải lại trang sau khi xóa thành công
             window.location.reload();
@@ -297,7 +301,7 @@ function Category() {
                             aria-hidden="true"
                         >
                             <div className="modal-dialog">
-                                <div className="modal-content">
+                                <form className="modal-content" onClick={handleSaveChanges}>
                                     <div className="modal-header">
                                         <h1 className="modal-title fs-5" id="editBackdropLabel">
                                             Cập nhật danh mục
@@ -310,7 +314,7 @@ function Category() {
                                         />
                                     </div>
                                     <div className="modal-body">
-                                        <input type="hidden" id="id_pay_edit" />
+                                        <input type="hidden" value={selectedCategory?.Id} id="id_pay_edit" />
                                         <div className="mb-3">
                                             <label htmlFor="name_pay_edit" className="form-label">
                                                 Tên danh mục
@@ -319,7 +323,7 @@ function Category() {
                                                 type="text"
                                                 className="form-control"
                                                 // id="name_pay_edit"
-                                                value={selectedCategory.Name}
+                                                value={selectedCategory?.Name}
                                                 onChange={(e) => setSelectedCategory({ ...selectedCategory, Name: e.target.value })}
                                             />
                                         </div>
@@ -333,11 +337,11 @@ function Category() {
                                         >
                                             Hủy bỏ
                                         </button>
-                                        <button type="button" onClick={handleSaveChanges} className="btn btn-primary">
+                                        <button type="submit" className="btn btn-primary">
                                             Cập nhật
                                         </button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <div
